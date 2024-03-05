@@ -1,0 +1,224 @@
+/* Imports */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
+body{
+    background-color: #eee;
+}
+
+.heading{
+    color: #444;
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+}
+
+/*Main video area*/
+
+.main-video{
+    width: 80vw;
+    height: 80vh;
+    aspect-ratio: 16/9;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.video-container{
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container.fullscreen{
+    max-width: 100%;
+    width: 100%;
+}
+
+.main-video .title{
+    color: #333;
+    font-size: 23px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/*Video controls*/
+
+.video-container video{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.wrapper{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .08s ease;
+}
+
+.video-container.show-controls .wrapper{
+    bottom: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all .08s ease;
+}
+
+.wrapper::before{
+    content: '';
+    bottom: 0;
+    width: 100%;
+    height: calc(100% + 35px);
+    z-index: -1;
+    position: absolute;
+    background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+}
+
+.video-timeline .progress-area{
+    height: 3px;
+    position: relative;
+    background: rgba(255, 255, 255, .6);
+}
+
+.progress-area span{
+    position: absolute;
+    left: 50%;
+    top: -25px;
+    color: #fff;
+    transform: translateX(-50%);
+}
+
+.progress-area .progress-bar{
+    width: 0%;
+    height: 100%;
+    position: relative;
+    background: #2980b9;
+}
+
+.progress-area .progress-bar::before{
+    content: '';
+    right: 0;
+    top: 50%;
+    height: 13px;
+    width: 13px;
+    background: inherit;
+    position: absolute;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.progress-area span,
+.progress-area .progress-bar::before{
+    display: none;
+}
+
+.video-timeline:hover .progress-area span,
+.video-timeline:hover .progress-area .progress-bar::before{
+    display: block;
+}
+
+.video-controls,
+.video-timer,
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-controls{
+    padding: 5px 2px 10px;
+}
+
+.video-controls,
+.options{
+    width: 100%;
+}
+
+.video-controls .options:first-child{
+    justify-content: flex-start;
+}
+
+.video-controls .options:last-child{
+    justify-content: flex-end;
+}
+
+.options button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    font-size: 19px;
+    background: none;
+    cursor: pointer;
+}
+
+.options button:where(i, span){
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+}
+
+.options input{
+    height: 4px;
+    max-width: 75px;
+}
+
+.options .video-timer{
+    font-size: 14px;
+    color: #efefef;
+    margin-left: 15px;
+}
+
+.video-timer .separator{
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.playback-content{
+    position: relative;
+}
+
+.playback-content .speed-options{
+    position: absolute;
+    bottom: 40px;
+    left: -40px;
+    width: 95px;
+    opacity: 0;
+    pointer-events: none;
+    list-style: none;
+    background: #fff;
+    border-radius: 4px;
+    transition: opacity 0.15s ease;
+}
+
+.playback-content .speed-options.show{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.playback-content button:hover ~ .speed-options{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.speed-options li{
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 0 5px 15px;
+}
+
+.speed-options li.active{
+    color: #fff;
+    background: #2980b9;
+}
