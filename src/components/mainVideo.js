@@ -263,7 +263,7 @@ export const MainVideoArea = () => {
                     <ul class="video-controls">
                         <li class="options left">
                             <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
-                            <input type="range" min="0" max="1" step="any" />
+                            <input type="range" min="0" max="1" step="any" value={0.5} />
                             <div class="video-timer">
                                 <p class="current-time">00:00</p>
                                 <p class="separator"> / </p>
@@ -295,7 +295,7 @@ export const MainVideoArea = () => {
                         </li>
                     </ul>
                 </div>
-                <video ref={videoRef}>
+                <video ref={videoRef} volume={0.5}>
                     <source src={mainVideo} type='video/mp4'></source>
                 </video>
             </div>
